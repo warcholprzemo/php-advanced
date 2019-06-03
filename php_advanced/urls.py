@@ -21,6 +21,8 @@ urlpatterns = [
     path('hello', example_views.hello_world),
     path('hello/<str:name>', example_views.hello_name),
     path('gift_list_by_func_view', example_views.simple_list_view),
-    path('gift_list_by_class_view', example_views.GiftListView.as_view()),
+    path('gift_list_by_class_view', example_views.GiftListView.as_view(), name='list_gfl'),
+    path('gift_list/add/', example_views.GiftListCreateView.as_view(), name='add_gfl'),
+    path('gift_list/edit/<int:pk>/', example_views.GiftListUpdateView.as_view(), name='edit_gfl'),
     path('admin/', admin.site.urls),
 ]

@@ -7,9 +7,10 @@ class GiftInLine(admin.TabularInline):
     extra = 1
 
 
+@admin.register(GiftList)
 class GiftListAdmin(admin.ModelAdmin):
     inlines = (GiftInLine,)
 
 
-admin.site.register(GiftList, GiftListAdmin)
+# admin.site.register(GiftList, GiftListAdmin)
 admin.site.register(Gift)

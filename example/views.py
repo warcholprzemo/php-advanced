@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.urls import reverse
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
 
 from example.forms import GiftListForm
 from example.models import GiftList
@@ -12,11 +11,11 @@ from example.models import GiftList
 #    return HttpResponse('Hello World!')
 
 def hello_world(request):
-    return render(request, 'example/index.html', {})
+    return render(request, 'example/index.html')
 
 
 def hello_name(request, name):
-    return HttpResponse(f'Hello {name}')
+    return HttpResponse(f'Hello {name}!')
 
 
 def simple_list_view(request):
@@ -37,15 +36,12 @@ class GiftListView(ListView):
 class GiftListCreateView(CreateView):
     model = GiftList
     form_class = GiftListForm
-    success_url = '/gift_list/add/'
+    success_url = reverse_lazy('list_gfl')
     template_name = 'example/add.html'
 
 
 class GiftListUpdateView(UpdateView):
     model = GiftList
     form_class = GiftListForm
+    success_url = reverse_lazy('list_gfl')
     template_name = 'example/add.html'
-
-    def get_success_url(self):
-        return reverse('list_gfl')
-

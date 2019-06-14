@@ -2,13 +2,21 @@
 
 {% block content %}
 <div class="panel panel-default">
-    <div class="panel-heading">List of Gift List</div>
+    <div class="panel-heading">
+        List of Gift List
+    </div>
     <div class="panel-body">
         <ul>
             {% for gfl in gfl_entries %}
-                 <li>{{ gfl.name|upper }} - {{ gfl.modified|date:'Y-m-d'}}</li>
+                 <li>
+                     {{ gfl.name|upper }} - {{ gfl.modified|date:'Y-m-d'}}
+                     <a href="{% url 'edit_gfl' gfl.id %}">Edit</a>
+                 </li>
             {% endfor %}
         </ul>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-primary" href="{% url 'add_gfl' %}">Add Gift List</a>
     </div>
 </div>
 {% endblock %}
